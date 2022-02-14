@@ -49,55 +49,37 @@
 
 #Code
 #Function to compare the Wordle
+
 def compare_wordle(str1, str2):
-        for i in range(len(str1)):
-            for j in range(len(str2)):
-                if str1[i] == str2[j]:
-                    #Condition to check if the letter is in correct position
-                    if i == j:
-                        print(str1[i]+" is in the correct position")
-                    else:
-                        print(str1[i]+" is present in the wordle but not in the correct position")
-
-
-#Begin
-print("Welcome to Wordle")
-counter = 0
-wordle = "SONAR"
-attempt_list = []
-
-while counter < 6:
-    boolean = False
-    user_input = input("Enter the word: ")
-    user_input = user_input.upper()
-    #Condition to check length of user input
-    if len(user_input) != 5:
-        print("The word must consist of 5 alphabets only")
-        counter = counter-1
-    # Condition to check whether the user input contains only alphabets or not
-    elif user_input.isalpha() == boolean:
-        print("The word must consist of alphabets only")
-        counter = counter-1
-    else:
-        # Condition to check if user input is repeated
-        if user_input not in attempt_list:
-            attempt_list.append(user_input)
-            #Condition to check if user input matches the wordle
-            if user_input == wordle:
-                print("Congratulations! You have solved the Wordle!")
-                break
-            #Condition to call the compare_wordle function
-            else:
-                compare_wordle(user_input, wordle)
-                attempt = 5-counter
-                print("Remaining Attempts: ", attempt)
+    op = [None] * 5 #output variable
+    rp = []         #right position list
+    wp = []         #wrong position list
+    # Code for right position
+    for i in range(len(str1)):
+        if str1[i] == str2[i]:
+            # Condition to check if the letter is in correct position
+            op[i] = " "
+            if str1[i] not in rp:
+                rp.append(str1[i])
         else:
-            #Condition to reset counter if the word is used previously
-            print("You have attempted this word earlier. Please try another word.")
-            counter = counter-1
-            attempt = 5 - counter
-            print("Remaining Attempts: ", attempt)
-    counter += 1
-if counter > 5:
-    print("Sorry, but you have failed to solve the wordle!!! Please try again!!! ")
+            op[i] = '"'
 
+    for i in range(len(str1)):
+        for j in range(len(str2)):
+            if op[i] == '"':
+                #Condition to check if letter is present in the wordle
+                if str1[i] == str2[j] and str1[i] in rp and wp:
+                    op[i] = '"'
+                elif str1[i] == str2[j] and str1[i] in rp:
+                    op[i] = '"'
+                elif str1[i] == str2[j] and str1[i] in wp:
+                    op[i] = '"'
+                elif str1[i] == str2[j]:
+                    op[i] = "`"
+                    wp.append(str1[i])
+            else:
+                continue
+
+    out = ''.join(op)
+    print(" " * 16 + out)
+    return out
