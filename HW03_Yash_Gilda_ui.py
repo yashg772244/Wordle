@@ -1,5 +1,6 @@
 import HW03_Yash_Gilda_dictionary as dic
 import HW03_Yash_Gilda_wordle as wrd
+import HW03_Yash_Gilda_logger as logger
 # Begin
 def main():
     print("Welcome to Wordle")
@@ -66,6 +67,7 @@ def main():
         print(f"Guessed in 4th attempt: {guessDistribution[3]}")
         print(f"Guessed in 5th attempt: {guessDistribution[4]}")
         print(f"Guessed in 6th attempt: {guessDistribution[5]}")
+        logger.game_logger(wordle, attempt_list, gamesPlayed, gamesWon, guessDistribution)
 
 def exit_game(a):
     # Condition to check length of user input
