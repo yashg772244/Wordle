@@ -1,5 +1,6 @@
 import HW03_Yash_Gilda_dictionary as dic
 import HW03_Yash_Gilda_wordle as wrd
+import HW03_Yash_Gilda_logger as logger
 # Begin
 def main():
     print("Welcome to Wordle")
@@ -11,12 +12,15 @@ def main():
         counter = 0
         wordle = dic.wordleAns()
         print(wordle)
-        #print(dic.list)
+        #print(dic.myList)
         attempt_list = []
         while counter < 6:
             boolean = False
-            user_input = input("Enter the word: ")
-            user_input = user_input.lower()
+            try:
+                user_input = input("Enter the word: ")
+                user_input = user_input.lower()
+            except:
+                print("Error in taking user input")
             # Condition to check length of user input
             if (exit_game(user_input)):
                 quit()
@@ -34,7 +38,7 @@ def main():
                     counter = counter - 1
                     attempt = 5 - counter
                     print("Remaining Attempts: ", attempt)
-                elif user_input in dic.list:
+                elif user_input in dic.myList:
                     if user_input not in attempt_list:
                         attempt_list.append(user_input)
                         # Condition to check if user input matches the wordle
@@ -66,32 +70,45 @@ def main():
         print(f"Guessed in 4th attempt: {guessDistribution[3]}")
         print(f"Guessed in 5th attempt: {guessDistribution[4]}")
         print(f"Guessed in 6th attempt: {guessDistribution[5]}")
+        logger.game_logger(wordle, attempt_list, gamesPlayed, gamesWon, guessDistribution)
 
 def exit_game(a):
     # Condition to check length of user input
-    if(len(a)== 0):
-        return True
-    else:
-        return False
+    try:
+        if(len(a)== 0):
+            return True
+        else:
+            return False
+    except:
+        print("Error Exiting Game")
 
 def check_char(a):
     # Condition to check whether the user input contains only alphabets or not
-    if(a.isalpha()):
-        return False
-    else:
-        return True
+    try:
+        if(a.isalpha()):
+            return False
+        else:
+            return True
+    except:
+        print("Error in checking character")
 
 def check_dic(a):
-    if(a not in dic.list):
-        return True
-    else:
-        return False
+    try:
+        if(a not in dic.myList):
+            return True
+        else:
+            return False
+    except:
+        print("")
 
 def check_len(a):
-    if(len(a) != 5):
-        return True
-    else:
-        return False
+    try:
+        if(len(a) != 5):
+            return True
+        else:
+            return False
+    except:
+        print("Error in checking length of character")
 
 if __name__ == "__main__":
     main()
