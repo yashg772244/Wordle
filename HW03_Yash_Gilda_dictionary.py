@@ -2,13 +2,24 @@ import random
 #Function to remove blank spaces from the dictionary
 def remove(string):
     return string.replace("\n", "")
-list = []
+myList = []
 #Imports the dictionary
-d = open("/Users/yashgilda/desktopp/MSCS/Sem_2/SSW 810 /HW_03/words.txt", "r")
+d = open("words.txt", "r")
+f = open("word_list.txt", "w")
 for x in d:
     x = remove(x)
     if len(x) == 5:
-        list.append(x)
+        myList.append(x)
+        f.write(x+"\n")
+f.close()
 #Chooses the wordle
-wordle = random.choice(list)
+def wordleAns():
+    #return random.choice(list)
+    r = open("word_list.txt", "r")
+    files = r.read()
+    dictList = files.split("\n")
+    finalList = list(dictList)
+    wordle = random.choice(finalList)
+    r.close()
+    return wordle
 
