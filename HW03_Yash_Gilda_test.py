@@ -48,12 +48,12 @@ class wordle_test(unittest.TestCase):
         self.assertFalse(ui.check_len("hello"))
 
     def test_check_likelihood_range_false(self) -> None:
-        """To check if the likelihood is less than 1"""
-        self.assertFalse(lfreq.check_likelihood_range("1.5"))
+        """To check if the likelihood is greater than 1"""
+        self.assertFalse(lfreq.check_likelihood_range(1.5))
 
     def test_check_likelihood_range_true(self) -> None:
-        """To check if the likelihood is greater than 1"""
-        self.assertTrue(lfreq.check_likelihood_range("0.5"))
+        """To check if the likelihood is less than 1"""
+        self.assertTrue(lfreq.check_likelihood_range(0.5))
 
     
 if __name__ == "__main__":
