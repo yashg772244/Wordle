@@ -17,7 +17,7 @@ def letter_likelihood():
     
     for letter in string.ascii_lowercase:
         flag = 0
-        for wrd in dic.myList:
+        for wrd in myList:
             flag += 1
         for i in range(5):
             wrd_occurence[letter][i] = round((wrd_occurence[letter][i] / flag),4)
