@@ -1,10 +1,15 @@
 import csv
 import string
-import HW03_Yash_Gilda_dictionary as dic
 wrd_occurence = dict( (key, [0,0,0,0,0]) for key in string.ascii_lowercase )
+myList = []
+#Calculates the Letter Likelihood
 def letter_likelihood():
-    #wrd_occurence = dict( (key, [0,0,0,0,0]) for key in string.ascii_lowercase )
-    for wrd in dic.myList:
+    r = open("word_list.txt", "r")
+    files = r.read()
+    dictList = files.split("\n")
+    myList = list(dictList)
+    r.close()
+    for wrd in myList:
         count = 0
         for letter in wrd:
             wrd_occurence[letter][count] += 1
@@ -23,11 +28,13 @@ def letter_likelihood():
 
     return wrd_occurence
 
+#Converting the list to Tuple
 def list_To_tuple(diction):
     for key in diction.keys():
         diction[key] = tuple(diction[key])
     return diction
 
+#Convert the Statistics into a Dictionary of Tuples
 def statsTodicTuples():
     file = open("letterFrequency.csv")
     csvreader = csv.reader(file)
@@ -37,12 +44,15 @@ def statsTodicTuples():
     #print(word_occurence_csv)
     file.close()
     return wrd_occurence_csv
-        
+
+#Calculates the Occurence Likelihood      
 def occ_likelihood():
     occ_like = {}
-    for wrd in dic.myList:
-        occurence_likelihood = float(wrd_occurence[wrd[0]][0]) * float(wrd_occurence[wrd[1]][1]) * float(wrd_occurence[wrd[2]][2]) * float(wrd_occurence[wrd[3]][3]) * float(wrd_occurence[wrd[4]][4])
-        occ_like[wrd] = occurence_likelihood
+    if check_len(wrd):
+        for wrd in myList:
+            occurence_likelihood = float(wrd_occurence[wrd[0]][0]) * float(wrd_occurence[wrd[1]][1]) * float(wrd_occurence[wrd[2]][2]) * float(wrd_occurence[wrd[3]][3]) * float(wrd_occurence[wrd[4]][4])
+            if check_likelihood_range(occurence_likelihood):
+                occ_like[wrd] = occurence_likelihood
 
     sorted_list = sorted(occ_like.items(), key=lambda x:x[1])
     sorted_list.reverse()
@@ -55,11 +65,24 @@ def occ_likelihood():
     f.close()
     return sorted_list
 
+#Checks the length of the word
+def check_len(wrd):
+    if len(wrd) == 5:
+        return True
+    else:
+        return False
 
-print(letter_likelihood())
-print()
-print(list_To_tuple(wrd_occurence))
-print()
-print(statsTodicTuples())
-print()
-print(occ_likelihood())
+def check_likelihood_range(likelihood):
+    if likelihood<1:
+        return True
+    else:
+        return False
+
+
+#print(letter_likelihood())
+#print()
+#print(list_To_tuple(wrd_occurence))
+#print()
+#print(statsTodicTuples())
+#print()
+#print(occ_likelihood())
