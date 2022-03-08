@@ -1,9 +1,8 @@
-from curses.ascii import LF
 import unittest
 import HW03_Yash_Gilda_dictionary as dictionary
 import HW03_Yash_Gilda_ui as ui
 import HW03_Yash_Gilda_wordle as wordle
-import HW_07_Yash_Gilda_letterFrequency as lfreq
+import HW_07_Yash_Gilda_letterFrequency as lFreq
 from unittest.mock import patch
 
 class wordle_test(unittest.TestCase):
@@ -47,13 +46,13 @@ class wordle_test(unittest.TestCase):
         """To check if the length of the word is 5"""
         self.assertFalse(ui.check_len("hello"))
 
-    def test_check_likelihood_range_false(self) -> None:
+    def test_check_likelihood_true(self) -> None:
         """To check if the likelihood is less than 1"""
-        self.assertFalse(lfreq.check_likelihood_range("1.5"))
+        self.assertTrue(lFreq.check_likelihood_range(0.5))
 
-    def test_check_likelihood_range_true(self) -> None:
+    def test_check_likelihood_false(self) -> None:
         """To check if the likelihood is greater than 1"""
-        self.assertTrue(lfreq.check_likelihood_range("0.5"))
+        self.assertFalse(lFreq.check_likelihood_range(1.5))
 
     
 if __name__ == "__main__":
