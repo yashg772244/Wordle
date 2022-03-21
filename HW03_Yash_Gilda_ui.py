@@ -111,7 +111,7 @@ class UI:
             else:
                 return False
         except:
-            print("")
+            print("Error in checking word in dictionary")
 
     def check_len(self, a):
         try:
