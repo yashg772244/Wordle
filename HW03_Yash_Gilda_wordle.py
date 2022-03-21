@@ -49,65 +49,66 @@
 
 #Code
 #Function to compare the Wordle
+class Wordle:
 
-def compareWord(a, b):
-    if (a == b):
-        return True
-    else:
-        return False
+    def compareWord(self, a, b):
+        if (a == b):
+            return True
+        else:
+            return False
 
-def compare_wordle(word, answer):
-                status = []
-                letter_counts: dict = {}  # making a dictionary to store the number of letters
-                for letter in answer:  # loop used to store the number of letters in the answer
-                    if letter in letter_counts.keys():
-                        letter_counts[letter] += 1
-                    else:
-                        letter_counts[letter] = 1
-                for index in range(len(answer)):  # loop used to store the status
-                    if word[index] == answer[index]:
-                        status.append(' ')
-                        letter_counts[answer[index]] -= 1
-                    else:
-                        status.append('"')
-                for index in range(len(answer)):
-                    if word[index] != answer[index]:
-                        if word[index] in letter_counts:
-                            if letter_counts[word[index]] > 0:
-                                letter_counts[word[index]] -= 1
-                                status[index] = "`"
-                out = ''.join(status)
-                print(" " * 16 + out)
+    def compare_wordle(self, word, answer):
+        status = []
+        letter_counts: dict = {}  # making a dictionary to store the number of letters
+        for letter in answer:  # loop used to store the number of letters in the answer
+            if letter in letter_counts.keys():
+                letter_counts[letter] += 1
+            else:
+                letter_counts[letter] = 1
+        for index in range(len(answer)):  # loop used to store the status
+            if word[index] == answer[index]:
+                status.append(' ')
+                letter_counts[answer[index]] -= 1
+            else:
+                status.append('"')
+        for index in range(len(answer)):
+            if word[index] != answer[index]:
+                if word[index] in letter_counts:
+                    if letter_counts[word[index]] > 0:
+                        letter_counts[word[index]] -= 1
+                        status[index] = "`"
+        out = ''.join(status)
+        print(" " * 16 + out)
 
-    # op = [None] * 5 #output variable
-    # rp = []         #right position list
-    # wp = []         #wrong position list
-    # # Code for right position
-    # for i in range(len(str1)):
-    #     if str1[i] == str2[i]:
-    #         # Condition to check if the letter is in correct position
-    #         op[i] = " "
-    #         if str1[i] not in rp:
-    #             rp.append(str1[i])
-    #     else:
-    #         op[i] = '"'
-    #
-    # for i in range(len(str1)):
-    #     for j in range(len(str2)):
-    #         if op[i] == '"':
-    #             #Condition to check if letter is present in the wordle
-    #             if str1[i] == str2[j] and str1[i] in rp and wp:
-    #                 op[i] = '"'
-    #             elif str1[i] == str2[j] and str1[i] in rp:
-    #                 op[i] = '"'
-    #             elif str1[i] == str2[j] and str1[i] in wp:
-    #                 op[i] = '"'
-    #             elif str1[i] == str2[j]:
-    #                 op[i] = "`"
-    #                 wp.append(str1[i])
-    #         else:
-    #             continue
-    #
-    # out = ''.join(op)
-    # print(" " * 16 + out)
-    # return out
+        # op = [None] * 5 #output variable
+        # rp = []         #right position list
+        # wp = []         #wrong position list
+        # # Code for right position
+        # for i in range(len(str1)):
+        #     if str1[i] == str2[i]:
+        #         # Condition to check if the letter is in correct position
+        #         op[i] = " "
+        #         if str1[i] not in rp:
+        #             rp.append(str1[i])
+        #     else:
+        #         op[i] = '"'
+        #
+        # for i in range(len(str1)):
+        #     for j in range(len(str2)):
+        #         if op[i] == '"':
+        #             #Condition to check if letter is present in the wordle
+        #             if str1[i] == str2[j] and str1[i] in rp and wp:
+        #                 op[i] = '"'
+        #             elif str1[i] == str2[j] and str1[i] in rp:
+        #                 op[i] = '"'
+        #             elif str1[i] == str2[j] and str1[i] in wp:
+        #                 op[i] = '"'
+        #             elif str1[i] == str2[j]:
+        #                 op[i] = "`"
+        #                 wp.append(str1[i])
+        #         else:
+        #             continue
+        #
+        # out = ''.join(op)
+        # print(" " * 16 + out)
+        # return out
