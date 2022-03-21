@@ -19,6 +19,7 @@ class UI:
     def main(self):
         print("Welcome to Wordle")
         self.dic.filter_dic()
+        
         while(True):
             self.gamesPlayed += 1
             counter = 0

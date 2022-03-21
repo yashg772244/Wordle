@@ -50,6 +50,7 @@ class wordle_test(unittest.TestCase):
         """To check if the length of the word is 5"""
         ui = u_i.UI()
         self.assertTrue(ui.check_len("aaaa"))
+        
 
     def test_check_len_false(self) -> None:
         """To check if the length of the word is 5"""
