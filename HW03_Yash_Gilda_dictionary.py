@@ -15,7 +15,7 @@ class Word_Dictionary:
     
     def filter_dic(self):
         #Imports the dictionary
-        d = open("words.txt", "r")
+        d = open("/Users/yashgilda/desktopp/MSCS/Sem_2/SSW_810/HW_04/Wordle/words.txt", "r")
         f = open("word_list.txt", "w")
         for x in d:
             x = self.remove(x)

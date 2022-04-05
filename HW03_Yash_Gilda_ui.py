@@ -1,6 +1,7 @@
 import HW03_Yash_Gilda_dictionary as dic
 from HW03_Yash_Gilda_wordle import Wordle as wrd
 import HW03_Yash_Gilda_logger as logger
+from HW_08_Yash_Gilda_Wordle_Helper import Helper as helper
 # Begin
 class UI:
     gamesPlayed = 0
@@ -27,6 +28,7 @@ class UI:
             print(wordle)
             #print(self.dic.myList)
             attempt_list = []
+            bad_letters_list = []
             while counter < 6:
                 boolean = False
                 try:
@@ -65,6 +67,19 @@ class UI:
                                 self.wrd.compare_wordle(user_input, wordle)
                                 attempt = 5 - counter
                                 print("Remaining Attempts: ", attempt)
+                                helper_input = input("Do you want to use the Wordle Helper?(Y/N): ")
+                                if helper_input == "Y" or "y":
+                                    good_letters = input("Enter good letters separated by space: ")
+                                    good_letters = good_letters.lower()
+                                    good_letters_list = good_letters.split(" ")
+                                    bad_letters = input("Enter the bad letters separated by space: ")
+                                    bad_letters = bad_letters.lower()
+                                    temp_bad_letters_list = bad_letters.split(" ")
+                                    bad_letters_list.extend(temp_bad_letters_list)
+                                    print(bad_letters_list)
+                                    #bad_letters_list = bad_letters_list, bad_letters.split(" ")
+                                    print("Helper Function Output: ")
+                                    print(helper.rankedWords(good_letters_list, bad_letters_list))
                         else:
                             # Condition to reset counter if the word is used previously
                             print("You have attempted this word earlier. Please try another word.")
