@@ -79,7 +79,11 @@ class UI:
                                     print(bad_letters_list)
                                     #bad_letters_list = bad_letters_list, bad_letters.split(" ")
                                     print("Helper Function Output: ")
-                                    print(helper.rankedWords(good_letters_list, bad_letters_list))
+                                    helper_words = helper.rankedWords(good_letters_list, bad_letters_list)
+                                    if len(helper_words) <= 0:
+                                        print("No output to display from the helper!")
+                                    else:
+                                        print(helper_words)
                         else:
                             # Condition to reset counter if the word is used previously
                             print("You have attempted this word earlier. Please try another word.")
